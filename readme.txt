@@ -4,7 +4,7 @@ mivel fájlokat kell írni-olvasni.
 A csoport tagja:
 - XY1
 - XY2
-- XY3
+- kovacskmate - Kovács Máté
 
 VS Code + TypeScript + Node.js + Git
 =====================================

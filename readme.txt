@@ -3,7 +3,7 @@ Visual Studio Code fejlesztői környezettel, TypeScript nyelven Node.js-el a sz
 mivel fájlokat kell írni-olvasni.
 A csoport tagja:
 - ezselyszovat - Ézsely Szovát
-- XY2
+- adamkiss796128730 - Kiss Ádám
 - kovacskmate - Kovács Máté
 
 VS Code + TypeScript + Node.js + Git

@@ -2,7 +2,7 @@ import * as http from "http";
 import * as url from "url"; // űrlapokhoz, input kiolvasás
 import * as fs from "fs"; // file-kezelés
 import { Vásárlás } from "./Vásárlás";
-export class Otszaz {
+export class Content {
     Content(req: http.ServerRequest, res: http.ServerResponse): void {
         res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
         // tslint:disable-next-line:max-line-length
@@ -10,6 +10,7 @@ export class Otszaz {
 
         const query: any = url.parse(req.url, true).query; // user input
         const sorszam: string = query.sorszam === undefined ? "" : query.sorszam;
+        // tslint:disable-next-line:max-line-length
         const arucikknev: string = query.arucikknev === undefined ? "" : query.arucikknev;
         const darabszam: string = query.darabszam === undefined ? "" : query.darabszam;
 
@@ -40,7 +41,7 @@ export class Otszaz {
             "<input type='text' name='darabszam' style='font-family:Courier; " +
             "font - size: inherit; background:LightGray; ' value=" +
             `'${darabszam}'><br>`);
-        res.write("</p><input type='submit' value='Frissítés'>\n");
+        res.write("</p><input type='submit' value='Mehet'>\n\n");
         res.write("5. feladat\n");
         let alkalmak: number = 0;
         v.forEach(element => {
@@ -61,7 +62,11 @@ export class Otszaz {
                 utolsosorszam = element.Ssz;
             }
         });
-        res.write("\nAz utolsó vásárlás sorszáma: " + utolsosorszam + "</pre></form>");
-    res.end();
+        res.write("\nAz utolsó vásárlás sorszáma: " + utolsosorszam + "\n");
+        res.write("\n6. feladat\n");
+        // tslint:disable-next-line:max-line-length
+        res.write(darabszam + " darab vételekor fizetendő: " + new Vásárlás(0, "", darabszam).Ár);
+        res.write("\n\n7. feladat</pre></form>");
+        res.end();
 }
 }

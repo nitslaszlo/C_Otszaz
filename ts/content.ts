@@ -58,8 +58,7 @@ export class Otszaz {
         res.write("\nAz első vásárlás sorszáma: " + elsosorszam);
         v.forEach(element => {
             if (element.Árucikk === arucikknev) {
-                element.Ssz 
-
+                utolsosorszam = element.Ssz;
             }
         });
         res.write("\nAz utolsó vásárlás sorszáma: " + utolsosorszam + "</pre></form>");

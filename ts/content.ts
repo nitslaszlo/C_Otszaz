@@ -9,10 +9,10 @@ export class Content {
         res.write("<body><form> <pre style='font-family: Courier; font-size:18px; background: LightGray'>");
 
         const query: any = url.parse(req.url, true).query; // user input
-        const sorszam: string = query.sorszam === undefined ? "" : query.sorszam;
+        const sorszam: number = query.sorszam === undefined ? "" : query.sorszam;
         // tslint:disable-next-line:max-line-length
         const arucikknev: string = query.arucikknev === undefined ? "" : query.arucikknev;
-        const darabszam: string = query.darabszam === undefined ? "" : query.darabszam;
+        const darabszam: number = query.darabszam === undefined ? "" : query.darabszam;
 
         const v: Vásárlás[] = [];
         let ssz: number = 1;

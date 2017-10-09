@@ -5,14 +5,14 @@ import { Vásárlás } from "./Vásárlás";
 export class Content {
     Content(req: http.ServerRequest, res: http.ServerResponse): void {
         res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-        // tslint:disable-next-line:max-line-length
+
         res.write("<body><form> <pre style='font-family: Courier; font-size:18px; background: LightGray'>");
 
         const query: any = url.parse(req.url, true).query; // user input
-        const sorszam: number = query.sorszam === undefined ? "" : query.sorszam;
-        // tslint:disable-next-line:max-line-length
-        const arucikknev: string = query.arucikknev === undefined ? "" : query.arucikknev;
-        const darabszam: number = query.darabszam === undefined ? "" : query.darabszam;
+        const sorszám: number = query.sorszam === undefined ? "" : query.sorszam;
+
+        const árucikknév: string = query.arucikknev === undefined ? "" : query.arucikknev;
+        const darabszám: number = query.darabszam === undefined ? "" : query.darabszam;
 
         const v: Vásárlás[] = [];
         let ssz: number = 1;
@@ -22,51 +22,59 @@ export class Content {
             else v.push(new Vásárlás(ssz, i, 1));
         });
         res.write("2. feladat\nA fizetések száma: " + (ssz - 1));
-        let hányat: number = 0;
+        let mennyiElső: number = 0;
         v.forEach(element => {
-            if (element.Ssz === 1) hányat++;
+            if (element.Ssz === 1) mennyiElső++;
         });
-        // tslint:disable-next-line:max-line-length
         res.write("\n");
-        res.write("3. feladat\nAz első vásárló " + hányat + " darab árucikket vásárolt.\n");
+
+        res.write("3. feladat\nAz első vásárló " + mennyiElső + " darab árucikket vásárolt.\n");
+
         res.write("<p>4. feladat\n Sorszám = " +
             "<input type='text' name='sorszam' style='font-family:Courier; " +
             "font - size: inherit; background:LightGray; ' value=" +
-            `'${sorszam}'><br>`);
+            `'${sorszám}'><br>`);
         res.write(" Árucikk neve = " +
             "<input type='text' name='arucikknev' style='font-family:Courier; " +
             "font - size: inherit; background:LightGray; ' value=" +
-            `'${arucikknev}'><br>`);
+            `'${árucikknév}'><br>`);
         res.write(" Darabszám = " +
             "<input type='text' name='darabszam' style='font-family:Courier; " +
             "font - size: inherit; background:LightGray; ' value=" +
-            `'${darabszam}'><br>`);
+            `'${darabszám}'><br>`);
         res.write("</p><input type='submit' value='Mehet'>\n\n");
+
         res.write("5. feladat\n");
         let alkalmak: number = 0;
         v.forEach(element => {
-            if (element.Árucikk === arucikknev) alkalmak++;
+            if (element.Árucikk === árucikknév) alkalmak++;
         });
-        // tslint:disable-next-line:max-line-length
-        res.write(alkalmak + " alkalommal vásároltak " + arucikknev + " árucikket.");
-        let elsosorszam: number = 0;
-        let utolsosorszam: number = 0;
+        res.write(alkalmak + " alkalommal vásároltak " + árucikknév + " árucikket.");
+        let elsoSorszám: number = 0;
+        let utolsóSorszám: number = 0;
         for (let i: number = 0; i < v.length; i++) {
-            if (v[i].Árucikk === arucikknev) {
-                elsosorszam = v[i].Ssz; break;
+            if (v[i].Árucikk === árucikknév) {
+                elsoSorszám = v[i].Ssz; break;
             }
         }
-        res.write("\nAz első vásárlás sorszáma: " + elsosorszam);
+        res.write("\nAz első vásárlás sorszáma: " + elsoSorszám);
         v.forEach(element => {
-            if (element.Árucikk === arucikknev) {
-                utolsosorszam = element.Ssz;
+            if (element.Árucikk === árucikknév) {
+                utolsóSorszám = element.Ssz;
             }
         });
-        res.write("\nAz utolsó vásárlás sorszáma: " + utolsosorszam + "\n");
+        res.write("\nAz utolsó vásárlás sorszáma: " + utolsóSorszám + "\n");
+
         res.write("\n6. feladat\n");
-        // tslint:disable-next-line:max-line-length
-        res.write(darabszam + " darab vételekor fizetendő: " + new Vásárlás(0, "", darabszam).Ár);
-        res.write("\n\n7. feladat</pre></form>");
+        res.write(darabszám + " darab vételekor fizetendő: " + new Vásárlás(0, "", darabszám).Ár);
+        // res.write("\n\n8. feladat</pre></form>");
+        // const akt: string[] = [];
+        //     for (let i: number = 0; i < v.length; i++) {
+        //     if (v[i].Ssz === sorszám) {
+        //         akt.push(v[i].Árucikk);
+        //     }
+        // }
+        // res.write(akt);
         res.end();
 }
 }

@@ -13,7 +13,6 @@ export class Content {
 
         const árucikknév: string = query.arucikknev === undefined ? "" : query.arucikknev;
         const darabszám: number = query.darabszam === undefined ? "" : query.darabszam;
-
         const v: Vásárlás[] = [];
         let ssz: number = 1;
         const sorok: string[] = fs.readFileSync("penztar.txt").toString().split("\r\n");
@@ -67,14 +66,33 @@ export class Content {
 
         res.write("\n6. feladat\n");
         res.write(darabszám + " darab vételekor fizetendő: " + new Vásárlás(0, "", darabszám).Ár);
-        // res.write("\n\n8. feladat</pre></form>");
-        // const akt: string[] = [];
-        //     for (let i: number = 0; i < v.length; i++) {
-        //     if (v[i].Ssz === sorszám) {
-        //         akt.push(v[i].Árucikk);
-        //     }
-        // }
-        // res.write(akt);
+        res.write("\n\n8. feladat <br> <br>");
+        const akt: string[] = [];
+        const akt2: number[] = [];
+            for (let i: number = 0; i < v.length; i++) {
+            if (v[i].Ssz === Number(sorszám)) {
+                if (!(akt.indexOf(v[i].Árucikk) > -1)) {
+                    akt.push(v[i].Árucikk);
+                    akt2.push(1);
+                }
+                else {
+                    const index: number = akt.indexOf(v[i].Árucikk);
+                    if (index !== -1) akt2[index]++;
+                    }
+            }
+        }
+            for (let i: number = 0; i < akt.length; i++) {
+                res.write(akt[i]);
+                for (let k: number = 0; k < akt2[i]; k++) res.write(" O");
+                res.write("<br>");
+            }
+        // let vettDarab: number = 0;
+        // v.forEach(element => {
+        //     vettDarab += element.Darab;
+        //     res.write(element.Ssz + ": " + new Vásárlás(0, "", vettDarab).Ár + "<br>");
+        //     vettDarab = 0;
+        // });
+        res.write("</pre></form>");
         res.end();
 }
 }

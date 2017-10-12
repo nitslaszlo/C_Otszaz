@@ -89,14 +89,16 @@ export class Content {
                 for (let k: number = 0; k < akt2[i]; k++) res.write(" O");
                 res.write("<br>");
             }
-        // let vettDarab: number = 0;
-        // for (let i: number = 1; i < v.length; i++) {
-        //     for (let j: number = 0; i === v[j].Ssz; j++) {
-        //         vettDarab += v[j].Darab;
-        //     }
-        //     res.write(i + ": " + new Vásárlás(0, "", vettDarab).Ár + "<br>");
-        //     vettDarab = 0;
-        //     }
+        let vettDarab: number = 0;
+        for (let i: number = 1; i < ssz - 1; i++) {
+            for (let j: number = 0; i < v.length; j++) {
+                if (v[j].Ssz === i) {
+                    vettDarab += v[j].Darab;
+                }
+            }
+            res.write(i + ": " + new Vásárlás(0, "", vettDarab).Ár + "<br>");
+            vettDarab = 0;
+            }
         res.write("</pre></form>");
         res.end();
 }

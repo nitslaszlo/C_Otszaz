@@ -90,11 +90,11 @@ export class Content {
                 res.write("<br>");
             }
         // let vettDarab: number = 0;
-        // for (let i: number = 1; i = v.length; i++) {
-        //     while (i === v[i].Ssz) {
-        //         vettDarab += v[i].Darab;
+        // for (let i: number = 1; i < v.length; i++) {
+        //     for (let j: number = 0; i === v[j].Ssz; j++) {
+        //         vettDarab += v[j].Darab;
         //     }
-        //     res.write(v[i].Ssz + ": " + new Vásárlás(0, "", vettDarab).Ár + "<br>");
+        //     res.write(i + ": " + new Vásárlás(0, "", vettDarab).Ár + "<br>");
         //     vettDarab = 0;
         //     }
         res.write("</pre></form>");

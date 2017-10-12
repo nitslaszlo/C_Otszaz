@@ -90,7 +90,7 @@ export class Content {
         let vettDarab: number = 0;
         const ws: fs.WriteStream = fs.createWriteStream("osszeg.txt");
         for (let i: number = 1; i < ssz - 1; i++) {
-            for (let j: number = 0; i < v.length; j++) {
+            for (let j: number = 0; j < v.length; j++) {
                 if (v[j].Ssz === i) {
                     vettDarab += v[j].Darab;
                 }

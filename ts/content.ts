@@ -6,7 +6,6 @@ export class Content {
     Content(req: http.ServerRequest, res: http.ServerResponse): void {
         res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
 
-        // tslint:disable-next-line:max-line-length
         res.write("<body><form> <pre style='font-family: Courier; font-size:18px; background: LightGray'>");
 
         const query: any = url.parse(req.url, true).query; // user input
@@ -28,7 +27,6 @@ export class Content {
         });
         res.write("\n");
 
-        // tslint:disable-next-line:max-line-length
         res.write("3. feladat\nAz első vásárló " + mennyiElső + " darab árucikket vásárolt.\n");
 
         res.write("<p>4. feladat\n Sorszám = " +
@@ -67,8 +65,8 @@ export class Content {
         res.write("\nAz utolsó vásárlás sorszáma: " + utolsóSorszám + "\n");
 
         res.write("\n6. feladat\n");
-        // tslint:disable-next-line:max-line-length
         res.write(darabszám + " darab vételekor fizetendő: " + new Vásárlás(0, "", darabszám).Ár);
+        
         res.write("\n\n7. feladat<br>");
         const akt: string[] = [];
         const akt2: number[] = [];

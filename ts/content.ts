@@ -66,7 +66,7 @@ export class Content {
 
         res.write("\n6. feladat\n");
         res.write(darabszám + " darab vételekor fizetendő: " + new Vásárlás(0, "", darabszám).Ár);
-        
+
         res.write("\n\n7. feladat<br>");
         const akt: string[] = [];
         const akt2: number[] = [];

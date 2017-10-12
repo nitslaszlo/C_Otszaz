@@ -90,13 +90,14 @@ export class Content {
                 res.write("<br>");
             }
         let vettDarab: number = 0;
+        const ws: fs.WriteStream = fs.createWriteStream("osszeg.txt");
         for (let i: number = 1; i < ssz - 1; i++) {
             for (let j: number = 0; i < v.length; j++) {
                 if (v[j].Ssz === i) {
                     vettDarab += v[j].Darab;
                 }
             }
-            res.write(i + ": " + new Vásárlás(0, "", vettDarab).Ár + "<br>");
+            ws.write(`${i} ${new Vásárlás(0, "", vettDarab).Ár}\r\n`);
             vettDarab = 0;
             }
         res.write("</pre></form>");
